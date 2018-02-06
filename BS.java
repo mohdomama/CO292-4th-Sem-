@@ -7,6 +7,9 @@ public class BS {
 		Scanner input = new Scanner(System.in);
 		Random rand = new Random();
 
+		System.out.println("Enter size of the array: ");
+		size = input.nextInt();
+
 		int[] array = new int[size];
 		int index, querry;
 
@@ -32,9 +35,10 @@ public class BS {
 	}
 
 	public static int binary_search(int array[], int querry){
-		int min = 0, max = size - 1, split, index = -1;
+		int min = 0, max = size - 1, split, index = -1, comparisons = 0;
 		while (min <= max) {
 			split = (min + max) / 2;
+			comparisons++;
 			if (array[split] == querry) {
 				index = split;
 				max = split -1; 
@@ -46,6 +50,7 @@ public class BS {
 				max = split - 1;
 			}
 		}
+		System.out.println("Number of comparisons: " + comparisons);
 
 		return index;
 	}
