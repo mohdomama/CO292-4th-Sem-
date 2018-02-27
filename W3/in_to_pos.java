@@ -69,7 +69,7 @@ public class in_to_pos{
 	static String convert(String expression){
 		String output = new String("");
 
-		// Stack<Character> stack = new Stack<>();
+		//Stack<Character> stack = new Stack<>();
 		CharStack stack = new CharStack();
 
 		for (Character ch : expression.toCharArray()){
