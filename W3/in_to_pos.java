@@ -69,7 +69,8 @@ public class in_to_pos{
 	static String convert(String expression){
 		String output = new String("");
 
-		Stack<Character> stack = new Stack<>();
+		// Stack<Character> stack = new Stack<>();
+		CharStack stack = new CharStack();
 
 		for (Character ch : expression.toCharArray()){
         	if (is_operator(ch)){
@@ -101,6 +102,9 @@ public class in_to_pos{
         		
     	}
 
+    	while (!stack.isEmpty())
+            output += stack.pop();
+
     	return output;
 	}
 
@@ -111,15 +115,8 @@ public class in_to_pos{
 		String line = input.nextLine();
 		String output;
 		
-		ali.push('a');
-		ali.push('b');
-		ali.push('c');
-
-		System.out.println(ali.pop());
-
-		System.out.println(line);
 		output = convert(line);
-		System.out.println(output);
+		System.out.println("\nThe postfix expression is:\n" + output);
 
 	}
 }
