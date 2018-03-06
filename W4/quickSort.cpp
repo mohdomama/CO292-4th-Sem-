@@ -28,7 +28,7 @@ public:
 
 	void quick_sort(int begin, int end){
 		if(begin < end){
-			int pivot_index = hoare_partition(begin, end);
+			int pivot_index = lomuto_partition(begin, end);
 			quick_sort(begin, pivot_index - 1);
 			quick_sort(pivot_index + 1, end);
 		}
@@ -41,11 +41,13 @@ public:
 		while (true){
 			do{
 				j = j - 1;
-			}while(array[j] > pivot);
+			}
+			while(array[j] > pivot);
 
 			do{
 				i = i + 1;
-			}while(array[i] < pivot);
+			}
+			while(array[i] < pivot);
 			if(i < j){
 				array[i] = array[j] + array[i];
 				array[j] = array[i] - array[j];
@@ -55,6 +57,25 @@ public:
 				return j;
 			}
 		}
+	}
+
+	void swap(int *a, int* b){
+		int temp = (*a);
+		(*a) = (*b);
+		(*b) = (temp);
+	}
+	
+	int lomuto_partition(int begin, int end){
+		int pivot = array[end];
+		int i = begin - 1;
+		for (int j = begin; j < end; j++){
+			if (array[j] <= pivot){
+				i = i + 1;
+				swap(&array[i], &array[j]);
+			}
+		}
+		swap(&array[i+1], &array[end]);
+		return (i + 1);
 	}
 
 	int get_size(){
