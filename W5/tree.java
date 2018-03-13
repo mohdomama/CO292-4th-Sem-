@@ -48,6 +48,26 @@ class Tree{
 
 	}
 
+	public void sum(Node node, int sum){
+		if(node.left == null && node.right == null){
+			sum += node.value;
+			System.out.println(sum + "  ");
+			return;
+		}
+		else{
+			sum += node.value;
+			if(node.left != null)
+				sum(node.left, sum);
+			if(node.right != null)
+				sum(node.right, sum);
+			return;
+		}
+	}
+
+	public void print_sum(){
+		this.sum(this.root, 0);
+	}
+
 	public void insert_value(int value, Node node){
 		if (value < node.value){
 			if (node.left == null){
@@ -79,6 +99,8 @@ class Tree{
 		}
 	}
 
+
+
 	public static void main(String[] args) {
 		Tree tree = new Tree();
 		int option, value;
@@ -91,6 +113,7 @@ class Tree{
 		    System.out.println("2) Print Pre Order");
 		    System.out.println("3) Print Post Order");
 		    System.out.println("4) Print In Order");
+		    System.out.println("5) Sum of each branch:");
 		    option = input.nextInt();
 		    switch (option){
 		      case 1:{
@@ -115,9 +138,14 @@ class Tree{
 		        System.out.println();
 		        break;
 		      }
+		      case 5: {
+		        tree.print_sum();
+		        System.out.println();
+		        break;
+		      }
 		      case 0: return;
 		    }
 
-		}
+		}	
 	}
 }
