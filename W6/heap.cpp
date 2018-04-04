@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stdlib.h>
+#include <math.h>
 using namespace std;
 
 class Heap{
@@ -68,15 +69,65 @@ public:
 	void heap_sort(){
 		build_max_heap();
 		for (int i = size -1; i > 0 ; i--){
+			
+			cout << "After Iteration " << size - i << " :" <<endl;
 			print();
+			heap_print(array, i + 1);
 			cout << endl;
 			swap(&array[0], &array[i]);
 			max_heapify(0, i);
+			
 		}
 	}
 
 	~Heap(){
 		free(array);
+	}
+
+	void heap_print(int arr[],int n){
+		int temp=n,count=0,h,level=0,i,j=1;
+		cout<<"\n\n";
+		while(temp>1)
+		{
+			count++;
+			temp=temp/2;
+		}
+		h=(count--)*5+20;
+		while(h-->0)
+			cout<<" ";
+		
+		for(i=0;i<n;i++)
+		{
+			cout<<arr[i]<<"     ";
+			if(j==pow(2,level))
+			{
+				cout<<"\n\n";
+				h=(count--)*5+20;
+				while(h-->0)
+					cout<<" ";
+				j=0;
+				level++;
+			}
+			j++;
+					
+		}
+	}
+
+	void new_print(int arr[], int size){
+		int h = 1, num = 0;
+		for (int i = 0; i < size; i++){
+			int p = h;
+			for (int j = h; j < 0; j--){
+				for(int k = size - p; k < 0; k++){
+					cout << "o ";
+				}
+				cout << arr[num++];
+
+			}
+			h = 2*p;
+			cout << endl;
+
+		}
 	}
 	
 };
