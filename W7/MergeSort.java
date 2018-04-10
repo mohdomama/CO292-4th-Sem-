@@ -1,4 +1,5 @@
 import java.util.Scanner;
+
 public class MergeSort {
 	
 	void merge(int[] array, int left, int mid, int right) {
@@ -15,6 +16,10 @@ public class MergeSort {
 		for(int i = 0; i < r_size; i++) {
 			right_array[i] = array[mid + 1 + i];
 		}
+
+		System.out.println("The left and right arrays are:");
+		print(left_array);
+		print(right_array);
 
 		int k = left, i = 0, j = 0;
 
@@ -51,6 +56,13 @@ public class MergeSort {
 			merge(array, left, mid, right);
 		}
 	}
+
+	public static void print(int[] array) {
+		for (int i = 0; i < array.length; i++) {
+			System.out.print(array[i] + "  ");
+		}
+		System.out.println();
+	}
 	
 	public static void main(String[] args) {
 		int size;
@@ -67,16 +79,12 @@ public class MergeSort {
 		}
 
 		System.out.println("The array you entered is:");
-		for (int i = 0; i < size; i++){
-			System.out.print(array[i] + " ");
-		}
+		print(array);
 
 		sort.merge_sort(array, 0, array.length - 1);
 
 		System.out.println("The array after sorting is:");
-		for (int i = 0; i < size; i++){
-			System.out.print(array[i] + " ");
-		}
+		print(array);
 
 	}
 }
