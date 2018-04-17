@@ -72,6 +72,21 @@ public:
 		}
 	}
 
+	int search (int value) {
+		int count = -1;
+		struct node* temp = Head;
+		if (Head == NULL)
+			return -1;
+		else {
+			while (temp!=NULL) {
+				count ++;
+				if (temp->value == value)
+					return count;
+				temp = temp->next;
+			}
+			return -1;
+		}
+	}
 	void print (){
 		struct node* temp = Head;
 		while (temp!=NULL) {
@@ -111,6 +126,18 @@ public:
 		}
 	}
 
+	void search (int key) {
+		int hash = hash_function (key);
+		int index = buckets[hash].search(key);
+		if (index != -1) {
+			cout << "Element found in bucket: " << hash << endl;
+			cout << "The index of the element is: " << index << endl;
+
+		}
+		else {
+			cout << "Element not found" << endl;
+		}
+	}
 	int hash_function (int key) {
 		int hash = key%hash_size;
 		return hash < 0 ? hash + hash_size : hash;
@@ -128,7 +155,8 @@ int main (int argc, char const *argv[]) {
 		cout << "0) Exit" << endl;
 		cout << "1) Add key" << endl;
 		cout << "2) Remove key" << endl;
-		cout << "3) Print Hash Table" << endl;
+		cout << "3) Search key" << endl;
+		cout << "4) Print Hash Table" << endl;
 
 		cin >> option;
 
@@ -150,6 +178,12 @@ int main (int argc, char const *argv[]) {
 				break;
 			}
 			case 3: {
+				cout << "Enter value to be searched:" <<endl;
+				cin >> key;
+				hash.search(key);
+				break;
+			}
+			case 4: {
 				hash.print_buckets();
 				break;
 			}
